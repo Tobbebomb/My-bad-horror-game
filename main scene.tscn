@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://c6h24xcldf8or"]
+
+[ext_resource type="Texture2D" uid="uid://g3gvkv20ersv" path="res://hand manu take.png" id="1_hhn25"]
+[ext_resource type="Script" path="res://start.gd" id="2_urgkb"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgx8d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6nkhi"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(0, 0, 175, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrp5r"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(175, 0, 175, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_18fjl"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(350, 0, 175, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65y7t"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(525, 0, 175, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mgkb"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(700, 0, 175, 106)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6k30d"]
+atlas = ExtResource("1_hhn25")
+region = Rect2(875, 0, 175, 106)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ursyq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6nkhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrp5r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_18fjl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65y7t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mgkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6k30d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.012
+anchor_right = 0.039
+anchor_bottom = 0.042
+offset_left = 651.176
+offset_top = 128.0
+offset_right = 663.072
+offset_bottom = 123.784
+scale = Vector2(5, 5)
+text = "Start
+"
+label_settings = SubResource("LabelSettings_xgx8d")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(877, 185)
+scale = Vector2(3.34571, 3.23585)
+sprite_frames = SubResource("SpriteFrames_ursyq")
+frame_progress = 0.824649
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.599
+anchor_top = 0.389
+anchor_right = 0.599
+anchor_bottom = 0.389
+offset_left = -76.048
+offset_top = -113.072
+offset_right = 312.952
+offset_bottom = 37.928
+script = ExtResource("2_urgkb")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_pressed_start_game"]
