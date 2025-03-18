@@ -15,8 +15,7 @@ uniform int color_levels : hint_range(2, 256) = 32;
 uniform bool enable_dithering = true;
 uniform float dither_strength : hint_range(0.0, 1.0) = 0.3;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear;
-const int pixel_size = 12; 
+
 
 float hashOld12(vec2 p){
 	return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453 + (TIME / noise_time_fac)) ;
@@ -61,11 +60,7 @@ void fragment(){
 	view.xyz /= view.w;
 
 
-	float x = float(int(FRAGCOORD.x) % pixel_size);
-	float y = float(int(FRAGCOORD.y) % pixel_size);
-	
-	x = FRAGCOORD.x + floor(float(pixel_size) / 2.0) - x;
-	y = FRAGCOORD.y + floor(float(pixel_size) / 2.0) - y;
+
 
 	float linear_depth = -view.z;
 	float depth_mask_inv = clamp((linear_depth - (fog_distance - fog_fade_range)) / fog_fade_range, 0.0, 1.0);

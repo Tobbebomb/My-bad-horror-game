@@ -84,7 +84,8 @@ vertical_alignment = 1
 position = Vector2(877, 185)
 scale = Vector2(3.34571, 3.23585)
 sprite_frames = SubResource("SpriteFrames_ursyq")
-frame_progress = 0.824649
+frame = 4
+frame_progress = 0.471809
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1

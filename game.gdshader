@@ -5,7 +5,7 @@ uniform float alpha : hint_range(0.0, 1.0) = 0.5;
 
 
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear;
-const int pixel_size = 12; 
+const int pixel_size = 5; 
 
 void vertex() {
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cu8bm8iekt0oj"
-path="res://.godot/imported/Test.fbx-30400dc96a309f3cbbc2e90985feec9a.scn"
+uid="uid://d3g24vmrrg6b0"
+path="res://.godot/imported/cube pick up.fbx-7c0dbb8c69c2871e5014ef7a64bce9f2.scn"
 
 [deps]
 
-source_file="res://models/Test.fbx"
-dest_files=["res://.godot/imported/Test.fbx-30400dc96a309f3cbbc2e90985feec9a.scn"]
+source_file="res://addons/cube pick up.fbx"
+dest_files=["res://.godot/imported/cube pick up.fbx-7c0dbb8c69c2871e5014ef7a64bce9f2.scn"]
 
 [params]
 
@@ -33,13 +33,13 @@ animation/import_rest_as_RESET=false
 import_script/path=""
 _subresources={
 "meshes": {
-"pCube8": {
+"pCube1": {
 "generate/lightmap_uv": 0,
 "generate/lods": 0,
 "generate/shadow_meshes": 0,
-"lods/normal_merge_angle": 60.0,
-"lods/normal_split_angle": 25.0,
-"save_to_file/enabled": true,
+"lods/normal_merge_angle": 0.0,
+"lods/normal_split_angle": 0.0,
+"save_to_file/enabled": false,
 "save_to_file/path": ""
 }
 }
