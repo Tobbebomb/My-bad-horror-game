@@ -81,6 +81,6 @@ void fragment(){
 		brightness += dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5);
 		final_color *= (1.0 + dither_strength * (dither(FRAGCOORD.xy, brightness) - 0.5));
 	}
-	
+
 	ALBEDO = final_color;
 }

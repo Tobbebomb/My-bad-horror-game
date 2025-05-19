@@ -79,7 +79,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CameraPivot:position")
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/CameraPivot:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -167,7 +167,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("CameraPivot:position")
+tracks/5/path = NodePath("SubViewportContainer/SubViewport/CameraPivot:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -200,7 +200,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraPivot/SmoothCamera:position")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/CameraPivot/SmoothCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -217,7 +217,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("CameraPivot/SmoothCamera:position")
+tracks/0/path = NodePath("SubViewportContainer/SubViewport/CameraPivot/SmoothCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -312,14 +312,26 @@ shape = SubResource("CapsuleShape3D_irl70")
 mesh = SubResource("CapsuleMesh_aufvi")
 skeleton = NodePath("../..")
 
-[node name="CameraPivot" type="Node3D" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="CameraPivot" type="Node3D" parent="SubViewportContainer/SubViewport"]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
 
-[node name="SmoothCamera" type="Camera3D" parent="CameraPivot"]
+[node name="SmoothCamera" type="Camera3D" parent="SubViewportContainer/SubViewport/CameraPivot"]
 script = ExtResource("2_1py82")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivot/SmoothCamera"]
+[node name="ReflectionProbe" type="ReflectionProbe" parent="SubViewportContainer/SubViewport/CameraPivot/SmoothCamera"]
+visible = false
 
 [node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true
