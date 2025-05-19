@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=3 uid="uid://dlbkch6iuy8gn"]
+[gd_scene load_steps=25 format=3 uid="uid://dlbkch6iuy8gn"]
 
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/player.gd" id="1_5ras8"]
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/smooth_camera.gd" id="2_1py82"]
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/player_state_machine.gd" id="2_wwa58"]
+[ext_resource type="Shader" path="res://addons/chaders/psx_camera_shader.gdshader" id="3_fucv0"]
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/player_move_state/idle.gd" id="3_xe000"]
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/player_move_state/jump.gd" id="4_1lr3q"]
 [ext_resource type="Script" path="res://addons/fp_controller/scripts/player_move_state/walk.gd" id="5_bwgwe"]
@@ -79,7 +80,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SubViewportContainer/SubViewport/CameraPivot:position")
+tracks/5/path = NodePath("CameraPivot:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -167,7 +168,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("SubViewportContainer/SubViewport/CameraPivot:position")
+tracks/5/path = NodePath("CameraPivot:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -200,7 +201,7 @@ length = 0.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/CameraPivot/SmoothCamera:position")
+tracks/0/path = NodePath("CameraPivot/SmoothCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -217,7 +218,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SubViewportContainer/SubViewport/CameraPivot/SmoothCamera:position")
+tracks/0/path = NodePath("CameraPivot/SmoothCamera:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -238,6 +239,24 @@ height = 1.8
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_aufvi"]
 height = 1.8
+
+[sub_resource type="QuadMesh" id="QuadMesh_4r3ok"]
+size = Vector2(2, 2)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lqouo"]
+render_priority = 0
+shader = ExtResource("3_fucv0")
+shader_parameter/enable_fog = true
+shader_parameter/fog_color = Color(0.148788, 0.0425533, 0.0402408, 1)
+shader_parameter/noise_color = Color(0.295629, 0.0816346, 0.0892145, 1)
+shader_parameter/fog_distance = 18.0
+shader_parameter/fog_fade_range = 14.0
+shader_parameter/enable_noise = true
+shader_parameter/noise_time_fac = 5.12
+shader_parameter/enable_color_limitation = true
+shader_parameter/color_levels = 256
+shader_parameter/enable_dithering = true
+shader_parameter/dither_strength = 0.82
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_5ras8")
@@ -312,26 +331,20 @@ shape = SubResource("CapsuleShape3D_irl70")
 mesh = SubResource("CapsuleMesh_aufvi")
 skeleton = NodePath("../..")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-render_target_update_mode = 4
-
-[node name="CameraPivot" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="CameraPivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 1.5, 2.08165e-12)
 
-[node name="SmoothCamera" type="Camera3D" parent="SubViewportContainer/SubViewport/CameraPivot"]
+[node name="SmoothCamera" type="Camera3D" parent="CameraPivot"]
 script = ExtResource("2_1py82")
 
-[node name="ReflectionProbe" type="ReflectionProbe" parent="SubViewportContainer/SubViewport/CameraPivot/SmoothCamera"]
-visible = false
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CameraPivot/SmoothCamera"]
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_4r3ok")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_lqouo")
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="CameraPivot/SmoothCamera"]
 
 [node name="StateMachine" type="Node" parent="."]
 unique_name_in_owner = true
