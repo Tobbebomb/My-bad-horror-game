@@ -247,16 +247,16 @@ size = Vector2(2, 2)
 render_priority = 0
 shader = ExtResource("3_fucv0")
 shader_parameter/enable_fog = true
-shader_parameter/fog_color = Color(0.148788, 0.0425533, 0.0402408, 1)
+shader_parameter/fog_color = Color(0.707, 0.707, 0.707, 1)
 shader_parameter/noise_color = Color(0.295629, 0.0816346, 0.0892145, 1)
 shader_parameter/fog_distance = 18.0
-shader_parameter/fog_fade_range = 14.0
+shader_parameter/fog_fade_range = 16.0
 shader_parameter/enable_noise = true
-shader_parameter/noise_time_fac = 5.12
+shader_parameter/noise_time_fac = 4.0
 shader_parameter/enable_color_limitation = true
-shader_parameter/color_levels = 256
+shader_parameter/color_levels = 200
 shader_parameter/enable_dithering = true
-shader_parameter/dither_strength = 0.82
+shader_parameter/dither_strength = 1.0
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_5ras8")
